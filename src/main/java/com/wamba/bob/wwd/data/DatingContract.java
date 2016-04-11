@@ -54,6 +54,7 @@ public class DatingContract {
         public static final String COLUMN_PROFILE_NAME = "name";
         public static final String COLUMN_PROFILE_AGE = "age";
         public static final String COLUMN_PROFILE_ABOUT = "about";
+        public static final String COLUMN_PROFILE_INTERESTS = "interests";
         public static final String COLUMN_PROFILE_PHOTO = "photo";
         public static final String COLUMN_PROFILE_PHOTO_BIG = "big_photo";
         public static final String COLUMN_PROFILE_ALBUMS_COUNT = "albums_count";

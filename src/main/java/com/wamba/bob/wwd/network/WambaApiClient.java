@@ -64,10 +64,10 @@ public class WambaApiClient {
 
 
 
-    public Profile getUser(Integer uid) {
+    public Profile getUser(long uid) {
         Uri.Builder builder = getBaseUriBuilder()
                 .appendEncodedPath("users")
-                .appendEncodedPath(uid.toString());
+                .appendEncodedPath(String.valueOf(uid));
 
         return getProfileOrUser(builder);
     }

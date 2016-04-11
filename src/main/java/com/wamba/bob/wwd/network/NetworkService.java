@@ -206,6 +206,7 @@ public class NetworkService extends Service {
             switch (command) {
                 case ACTION_LOAD_PROFILE: {
                     long uid = mIntent.getLongExtra(KEY_FIRST_LONG_PARAMETER, 0);
+                    loadUserAnketa(uid);
                     break;
                 }
                 case ACTION_LOAD_MY_PROFILE: {
@@ -232,6 +233,14 @@ public class NetworkService extends Service {
 
         }
 
+        private void loadUserAnketa(long uid) {
+
+            Profile profile = mClient.getUser(uid);
+
+            updateProfile(profile);
+            NetworkService.getInstance().taskFinished(this);
+
+        }
 
         public void updateProfiles(ArrayList<Profile> profiles) {
             Vector<ContentValues> cVVector = new Vector<ContentValues>(profiles.size());
@@ -270,6 +279,9 @@ public class NetworkService extends Service {
             contentValues.put(DatingContract.ProfileEntry.COLUMN_PROFILE_UPDATED_TS, profile.updated_ts);
             if (profile.about != null) {
                 contentValues.put(DatingContract.ProfileEntry.COLUMN_PROFILE_ABOUT, profile.about);
+            }
+            if (profile.interests != null) {
+                contentValues.put(DatingContract.ProfileEntry.COLUMN_PROFILE_INTERESTS, profile.interests);
             }
             if (profile.contacts_count != -1) {
                 contentValues.put(DatingContract.ProfileEntry.COLUMN_PROFILE_CONTACTS_COUNT, profile.albums_count);

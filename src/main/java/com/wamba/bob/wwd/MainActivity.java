@@ -36,6 +36,14 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        long userIdToshow = -1;
+        if (null == savedInstanceState) {
+            Uri uri = getIntent().getData();
+            if (uri != null) {
+                userIdToshow = DatingContract.ProfileEntry.getProfileIdFromUri(uri);
+            }
+        }
+
         String authToken = ((WwdApplication)getApplication()).getAuthToken();
         if (authToken == null) {
             AccountManager accountManager = AccountManager.get(this);
@@ -44,40 +52,35 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(this, LoginActivity.class);
                 startActivityForResult(intent, REQ_SIGNIN);
             } else {
-                long userId = Long.parseLong(accountManager.getUserData(accounts[0], DatingAccount.KEY_UESR_ID));
-                ((WwdApplication)getApplication()).setCurrentUserId(userId);
-                updateFragment(DatingContract.ProfileEntry.buildProfileUri(userId));
+                long uid = Long.parseLong(accountManager.getUserData(accounts[0], DatingAccount.KEY_UESR_ID));
+                ((WwdApplication)getApplication()).setCurrentUserId(uid);
                 accountManager.getAuthToken(accounts[0], DatingAccount.TOKEN_TYPE, null, this, new GetAuthTokenCallback(), null);
-
-            }
-
-        } else {
-            if (savedInstanceState == null) {
-                updateFragment(getIntent().getData());
+                if (userIdToshow == -1) {
+                    userIdToshow = uid;
+                }
             }
         }
 
+        //If we have user to show - let's show
+        if (userIdToshow != -1) {
+            updateFragment(userIdToshow);
+        }
     }
 
-    protected void updateFragment(Uri uri) {
-        Bundle arguments = new Bundle();
-        arguments.putParcelable(ProfileFragment.PROFILE_URI, uri);
+    protected void updateFragment(long uid) {
 
-        ProfileFragment fragment = new ProfileFragment();
-        fragment.setArguments(arguments);
-
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.profile_container, fragment)
-                .commit();
-
+        ProfileFragment pf = (ProfileFragment)getSupportFragmentManager().findFragmentById(R.id.profile_fragment);
+        pf.onUriChanged(
+                DatingContract.ProfileEntry.buildProfileUri(uid)
+        );
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK && requestCode == REQ_SIGNIN) {
             ((WwdApplication)getApplication()).setAuthToken(data.getStringExtra(AccountManager.KEY_AUTHTOKEN));
-            loadData();
+            updateFragment(data.getLongExtra(DatingAccount.KEY_UESR_ID, 0));
         }
-        Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT);
+        Toast.makeText(this, "something went wrong", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -89,35 +92,35 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_sign_out) {
-            AccountManager accountManager = AccountManager.get(this);
-            Account[] accounts = accountManager.getAccountsByType(DatingAccount.TYPE);
-            if (accounts.length != 0) {
+        switch (id) {
+            case R.id.action_sign_out:
 
-                accountManager.removeAccount(accounts[0], null, null);
-                WwdApplication.invalidateAuthToken();
-                DatingDbHelper dBHelper = new DatingDbHelper(this);
-                dBHelper.resetDatabase();
-                Intent intent = new Intent(this, LoginActivity.class);
-                startActivityForResult(intent, REQ_SIGNIN);
-            }
-            return true;
+                AccountManager accountManager = AccountManager.get(this);
+                Account[] accounts = accountManager.getAccountsByType(DatingAccount.TYPE);
+                if (accounts.length != 0) {
+
+                    accountManager.removeAccount(accounts[0], null, null);
+                    WwdApplication.invalidateAuthToken();
+                    DatingDbHelper dBHelper = new DatingDbHelper(this);
+                    dBHelper.resetDatabase();
+                    Intent intent = new Intent(this, LoginActivity.class);
+                    startActivityForResult(intent, REQ_SIGNIN);
+                }
+                break;
+            case R.id.action_show_somebody:
+                Intent intent = new Intent(this, MainActivity.class);
+                intent.setData(DatingContract.ProfileEntry.buildProfileUri(437420475));
+                startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     protected void loadData() {
-        Intent intent = new Intent(this, NetworkService.class);
-        intent.setAction(NetworkService.ACTION_LOAD_MY_PROFILE);
-        startService(intent);
+
         /*
         updateFragment(DatingContract.ProfileEntry.buildProfileUri(
                 ((WwdApplication)getApplication()).getCurrentUserId()

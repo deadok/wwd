@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="C:\Study\Android\WWD\app\src\main\jniLibs"/></dataSet><dataSet config="debug"><source path="C:\Study\Android\WWD\app\src\debug\jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/deadok/Documents/kill_me/Study/Android/wwd/app/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/home/deadok/Documents/kill_me/Study/Android/wwd/app/src/debug/jniLibs"/></dataSet></merger>

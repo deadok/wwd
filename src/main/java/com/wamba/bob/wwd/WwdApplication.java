@@ -1,9 +1,10 @@
 package com.wamba.bob.wwd;
 
-import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Application;
 
+import com.squareup.picasso.OkHttpDownloader;
+import com.squareup.picasso.Picasso;
 import com.wamba.bob.wwd.account.DatingAccount;
 import com.wamba.bob.wwd.network.WambaApiClient;
 
@@ -24,6 +25,14 @@ public class WwdApplication extends Application
     {
         super.onCreate();
         sInstance = this;
+
+
+        Picasso.Builder builder = new Picasso.Builder(this);
+        builder.downloader(new OkHttpDownloader(this,Integer.MAX_VALUE));
+        Picasso built = builder.build();
+        built.setIndicatorsEnabled(true);
+        built.setLoggingEnabled(true);
+        Picasso.setSingletonInstance(built);
     }
 
     public void setCurrentUserId(Long uid) {

@@ -289,14 +289,15 @@
     <string name="error_invalid_login">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_sign_in_is_required">You have to sign in to continue</string>
+    <string name="own_profile"> (it is you)</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
-    <string name="profile_is_mine">(it is you)</string>
     <string name="prompt_email_login">Email/login</string>
     <string name="prompt_password">Password</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="title_activity_main">User name</string>
+    <string name="title_activity_main_template">%1$s, %2$d%3$s</string>
     <string name="wamba">Wamba</string>
     <style name="AlertDialog.AppCompat" parent="Base.AlertDialog.AppCompat"/>
     <style name="AlertDialog.AppCompat.Light" parent="Base.AlertDialog.AppCompat.Light"/>

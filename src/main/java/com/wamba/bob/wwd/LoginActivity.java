@@ -363,6 +363,10 @@ public class LoginActivity extends AccountAuthenticatorActivity implements Loade
                         AccountManager.KEY_AUTHTOKEN,
                         authResult.getStringExtra(AccountManager.KEY_AUTHTOKEN)
                 );
+                intent.putExtra(
+                        DatingAccount.KEY_UESR_ID,
+                        profile.uid
+                );
                 setResult(Activity.RESULT_OK, intent);
                 finish();
             } else {

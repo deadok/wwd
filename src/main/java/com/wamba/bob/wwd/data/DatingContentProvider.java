@@ -68,10 +68,10 @@ public class DatingContentProvider extends ContentProvider {
 
         final String authority = DatingContract.CONTENT_AUTHORITY;
 
-        matcher.addURI(authority, DatingContract.PATH_PROFILE + "/#", PROFILES_MATCH);
-        matcher.addURI(authority, DatingContract.PATH_PROFILE, PROFILE_MATCH);
-        matcher.addURI(authority, DatingContract.PATH_CONTACT, CONTACTS_MATCH);
+        matcher.addURI(authority, DatingContract.PATH_PROFILE + "/#", PROFILE_MATCH);
+        matcher.addURI(authority, DatingContract.PATH_PROFILE, PROFILES_MATCH);
         matcher.addURI(authority, DatingContract.PATH_CONTACT + "/#", CONTACT_MATCH);
+        matcher.addURI(authority, DatingContract.PATH_CONTACT, CONTACTS_MATCH);
         matcher.addURI(authority, DatingContract.PATH_ALBUM, ALBUMS_MATCH);
         matcher.addURI(authority, DatingContract.PATH_ALBUM + "/#", ALBUM_MATCH);
         return matcher;

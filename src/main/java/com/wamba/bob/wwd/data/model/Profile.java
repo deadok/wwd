@@ -34,6 +34,20 @@ public class Profile implements Parcelable {
                     }
                 }
             }
+
+            //interests
+
+            if (profileJson.has("interests")) {
+                JSONArray fields = profileJson.getJSONObject("interests").getJSONArray("items");
+                interests = "";
+                for (int i = 0; i < fields.length(); i++) {
+                    JSONObject field = fields.getJSONObject(i);
+                    if(i > 0) {
+                        interests += ", ";
+                    }
+                    interests += field.getString("title");
+                }
+            }
             updated_ts = Math.round(System.currentTimeMillis()/1000);
         } catch (JSONException e) {
             Log.e(LOG_TAG, "Invalid profile json object");
@@ -47,6 +61,8 @@ public class Profile implements Parcelable {
     public int age;
 
     public String about;
+
+    public String interests;
 
     public String photo;
 
@@ -70,6 +86,7 @@ public class Profile implements Parcelable {
         dest.writeString(this.name);
         dest.writeInt(this.age);
         dest.writeString(this.about);
+        dest.writeString(this.interests);
         dest.writeString(this.photo);
         dest.writeString(this.big_photo);
         dest.writeInt(this.albums_count);
@@ -82,6 +99,7 @@ public class Profile implements Parcelable {
         this.name = in.readString();
         this.age = in.readInt();
         this.about = in.readString();
+        this.interests = in.readString();
         this.photo = in.readString();
         this.big_photo = in.readString();
         this.albums_count = in.readInt();

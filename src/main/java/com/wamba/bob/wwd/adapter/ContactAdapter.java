@@ -34,7 +34,7 @@ public class ContactAdapter extends CursorAdapter {
 
     @Override
     public View newView(Context context, Cursor cursor, ViewGroup parent) {
-        
+
         int layoutId = -1;
 
         View view = LayoutInflater.from(context).inflate(layoutId, parent, false);
