@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/deadok/Documents/kill_me/Study/Android/WWD/C:\\home\\deadok\\Documents\\kill_me\\Study\\Android\\WWD\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
+        "source": "/home/deadok/Documents/kill_me/Study/Android/WWD/C:\\home\\deadok\\Documents\\kill_me\\Study\\Android\\WWD\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "/home/deadok/Documents/kill_me/Study/Android/WWD/C:\\Study\\Android\\WWD\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xhdpi-v4\\ic_launcher.png",
+        "source": "/home/deadok/Documents/kill_me/Study/Android/WWD/C:\\Study\\Android\\WWD\\app\\src\\main\\res\\mipmap-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "/home/deadok/Documents/kill_me/Study/Android/WWD/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
+        "source": "/home/deadok/Documents/kill_me/Study/Android/WWD/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    },
+    {
+        "merged": "/home/deadok/Documents/kill_me/Study/Android/wwd/app/build/intermediates/res/merged/debug/mipmap-xhdpi-v4/ic_launcher.png",
+        "source": "/home/deadok/Documents/kill_me/Study/Android/wwd/app/src/main/res/mipmap-xhdpi/ic_launcher.png"
+    }
+]

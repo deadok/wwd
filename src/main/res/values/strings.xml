@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">WWD</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email_login">Email/login</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="error_invalid_login">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_login_or_password">This login/password is incorrect</string>
+    <string name="error_sign_in_is_required">You have to sign in to continue</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <!-- General strings -->
+    <string name="wamba">Wamba</string>
+    <string name="title_activity_main">User name</string>
+    <!-- <string name="title_activity_main_template">%1s, %2.0f %3s</string> -->
+    <string name="profile_is_mine">(it is you)</string>
+    <string name="action_signout">Sign out</string>
+
+</resources>
